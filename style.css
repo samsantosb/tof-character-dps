@@ -1,0 +1,11 @@
+/*centralize character_form class*/
+.character_form {
+  margin: 0 auto;
+  width: 50%;
+}
+
+/*retro font on h1*/
+h1 {
+  font-family: "Press Start 2P", cursive;
+  font-size: xx-large;
+}
