@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Damage Calculator Tower of Fantasy</title>
+  </head>
+  <h1>Tower of Fantasy damage Calculator</h1>
+  <body>
+    <h3>Character</h3>
+    <form action="index.html" method="post">
+      <label for="character_critical">Critical Rate:</label>
+      <input type="text" name="character_critical" id="character_critical" />
+      <label for="character_attack">E. Damage:</label>
+      <input type="text" name="character_attack" id="character_attack" />
+    </form>
+    <form action="index.html" method="post">
+      <h3>Gloves</h3>
+      <label for="glove_critical">Total Critical:</label>
+      <input type="text" name="glove_critical" id="glove_critical" />
+      <label for="glove_attack">Total Attack:</label>
+      <input type="text" name="glove_attack" id="glove_attack" />
+      <h3>Boots</h3>
+      <label for="boot_critical">Total Critical:</label>
+      <input type="text" name="boot_critical" id="boot_critical" />
+      <label for="boot_attack">Total Attack:</label>
+      <input type="text" name="boot_attack" id="boot_attack" />
+    </form>
+    <button type="button" id="submit">Submit</button>
+    <h3>Character Total Damage</h3>
+    <div type="text" name="character_total" id="character_total"></div>
+    <h3>Boots Total Damage</h3>
+    <div type="text" name="boot_total" id="boot_total"></div>
+    <h3>Gloves Total Damage</h3>
+    <div type="text" name="glove_total" id="glove_total"></div>
+  </body>
+  <script src="script.js"></script>
+</html>
