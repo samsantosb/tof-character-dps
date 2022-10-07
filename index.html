@@ -1,23 +1,47 @@
-<html>
-  <head>
-    <title>Damage Calculator Tower of Fantasy</title>
-  </head>
-  <h1>Tower of Fantasy damage Calculator</h1>
-  <body>
-    <h3>Character</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Css -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Scripts -->
+  <script async defer src="script.js"></script>
+
+  <!-- Title -->
+  <title>Damage Calculator Tower of Fantasy</title>
+</head>
+<body>
+  <div id="container">
+    <header><h1>Tower of Fantasy Damage Calculator</h1></header>
     <form action="index.html" method="post" class="character_form">
-      <label for="character_critical">Total Critical</label>
-      <input type="text" name="character_critical" id="character_critical" />
-      <label for="character_attack">Elemental Attack:</label>
-      <input
-        type="text"
-        name="character_elemental_attack"
-        id="character_elemental_attack"
-      />
+      <div class="form_container">
+        <h3>Character</h3>
+        <div class="form_control">
+          <label for="character_critical">Total Critical:</label>
+          <input type="text" name="character_critical" id="character_critical" />
+        </div>
+        <div class="form_control">
+          <label for="character_elemental_attack">Elemental Attack:</label>
+          <input
+            type="text"
+            name="character_elemental_attack"
+            id="character_elemental_attack"
+          />
+        </div>
+      </div>
+      <button type="button" id="submit">Submit</button>
+      <div class="total_container">
+        <h3>Character Total Damage:</h3>
+        <div type="text" name="character_total" id="character_total_damage"></div>
+      </div>
     </form>
-    <button type="button" id="submit">Submit</button>
-    <h3>Character Total Damage</h3>
-    <div type="text" name="character_total" id="character_total_damage"></div>
-  </body>
-  <script src="script.js"></script>
+  </div>
+</body>
 </html>
+
+
+

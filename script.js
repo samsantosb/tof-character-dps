@@ -17,16 +17,17 @@ function calculateDamage() {
     const criticalDamageBuff = criticalDamage * (criticalPercent / 100) + 1;
 
     //damage calculus
-    console.log(input.characterElementalAttack)
+
     const damage = input.characterElementalAttack * criticalDamageBuff;
     const totalDamageRounded = damage.toFixed(2);
-    console.log(totalDamageRounded);
 
+    return totalDamageRounded
 }
 
 function submit() {
     createVariables();
-    calculateDamage();
+    const totalDamageRounded = calculateDamage();
+    document.getElementById('character_total_damage').innerText = totalDamageRounded;
 }
 
 function init() {
