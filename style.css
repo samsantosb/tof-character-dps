@@ -8,7 +8,7 @@
   --accent-primary: #d9b18f;
 
   --font-family-primary: Poppins, sans-serif;
-  --font-family-secondary: "Press Start 2P", cursive;
+  --font-family-secondary: Poppins, sans-serif;
 
   --medium-weight: 500;
   --bold-weight: 700;
@@ -67,6 +67,11 @@ h4,
 h5,
 h6 {
   font-weight: normal;
+}
+
+h1 {
+  position: relative;
+  margin-top: 4rem;
 }
 
 fieldset {
