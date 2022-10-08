@@ -71,8 +71,11 @@ function submit() {
     if (!totalDamageRounded || !bestType) {
         alert('Please enter a valid number');
     }
-    localStorage.setItem('character_critical', document.getElementById('character_critical').value);
-    localStorage.setItem('character_elemental_attack', document.getElementById('character_elemental_attack').value);
+
+    if (totalDamageRounded && bestType) {
+        localStorage.setItem('character_critical', document.getElementById('character_critical').value);
+        localStorage.setItem('character_elemental_attack', document.getElementById('character_elemental_attack').value);
+    }
 }
 
 function run() {
