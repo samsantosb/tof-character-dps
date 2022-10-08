@@ -1,14 +1,23 @@
-//find character_critical and character_damage id, sum them and display in character_total_damage id
+const getByid = document.getElementById.bind(document);
+const loadItem = localStorage.getItem.bind(localStorage);
+const saveItem = localStorage.setItem.bind(localStorage);
+
+const character = {
+    critical: "character_critical",
+    eAttack: "character_elemental_attack",
+    totalDamage: "character_total_damage",
+    statusAnalysis: "status_analysis"
+}
 
 function load() {
-    document.getElementById('character_critical').value = localStorage.getItem('character_critical');
-    document.getElementById('character_elemental_attack').value = localStorage.getItem('character_elemental_attack');
+    getByid(character.critical).value = loadItem(character.critical);
+    getByid(character.eAttack).value = loadItem(character.eAttack);
 } load()
 
 function createVariables() {
     return {
-        characterCritical: Number(document.getElementById("character_critical").value),
-        characterElementalAttack: Number(document.getElementById("character_elemental_attack").value),
+        characterCritical: Number(getByid(character.critical).value),
+        characterElementalAttack: Number(getByid(character.critical).value),
     }
 }
 
@@ -53,19 +62,18 @@ function statusHint() {
     return;
 }
 
-
 function submit() {
     const totalDamageRounded = calculateDamage();
     const bestType = statusHint();
 
     if (totalDamageRounded) {
-        document.getElementById('character_total_damage').innerText = totalDamageRounded;
-        localStorage.setItem('character_critical', document.getElementById('character_critical').value);
-        localStorage.setItem('character_elemental_attack', document.getElementById('character_elemental_attack').value);
+        getByid(character.totalDamage).innerText = totalDamageRounded;
+        saveItem(character.critical, getByid(character.critical).value);
+        saveItem(character.eAttack, getByid(character.eAttack).value);
     }
 
     if (bestType) {
-        document.getElementById('status_hint').innerText = bestType;
+        getByid(character.statusAnalysis).innerText = bestType;
     }
 
     if (!totalDamageRounded || !bestType) {
@@ -74,5 +82,5 @@ function submit() {
 }
 
 function run() {
-    document.getElementById("submit").addEventListener("click", submit);
+    getByid("submit").addEventListener("click", submit);
 } run();
