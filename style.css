@@ -203,6 +203,7 @@ h3 {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  margin-bottom: 2rem;
 }
 
 #submit:after {
