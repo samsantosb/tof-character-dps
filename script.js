@@ -37,19 +37,19 @@ function statusHint() {
     const input = createVariables()
 
     if (input.characterElementalAttack <= 6000) {
-        return 'Elemental Attack gives 500% more damage than Critical Rate (in 1:1 ratio)';
+        return 'Elemental Attack gives 5 times more damage than Critical Rate (in 1:1 ratio)';
     }
 
     if (input.characterElementalAttack > 6000 && input.characterElementalAttack <= 10000) {
-        return 'Eelemental Rate gives 400% more damage than Critical Rate (in 1:1 ratio)';
+        return 'Eelemental Rate gives 4 times more damage than Critical Rate (in 1:1 ratio)';
     }
 
     if (input.characterElementalAttack > 10000 && input.characterElementalAttack <= 15000) {
-        return 'Eelemental Attack gives 50% more damage than Crtical Rate (in 1:1 ratio)';
+        return 'Eelemental Attack gives 1,5 times more damage than Crtical Rate (in 1:1 ratio)';
     }
 
     if (input.characterElementalAttack > 20000) {
-        return 'Elemental Attack 35% more damage than Critical Rate (in 1:1 ratio)';
+        return 'Elemental Attack 1,35 times more damage than Critical Rate (in 1:1 ratio)';
     }
 }
 
