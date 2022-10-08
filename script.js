@@ -26,17 +26,12 @@ function calculateDamage() {
 
     //critical formula
     const criticalPercent = input.characterCritical * 0.006276
-    console.log(criticalPercent)
     const criticalDamage = 0.5;
     const criticalDamageBuff = criticalDamage * (criticalPercent / 100) + 1;
-    console.log(criticalDamageBuff)
 
     //damage formula
     const damage = input.characterElementalAttack * criticalDamageBuff;
-    console.log(input.characterElementalAttack)
-
     const totalDamageRounded = damage.toFixed(2);
-    console.log(totalDamageRounded)
 
     if (isNaN(totalDamageRounded)) {
         return;
