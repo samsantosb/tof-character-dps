@@ -17,7 +17,7 @@ function load() {
 function createVariables() {
     return {
         characterCritical: Number(getByid(character.critical).value),
-        characterElementalAttack: Number(getByid(character.critical).value),
+        characterElementalAttack: Number(getByid(character.eAttack).value),
     }
 }
 
@@ -26,12 +26,17 @@ function calculateDamage() {
 
     //critical formula
     const criticalPercent = input.characterCritical * 0.006276
+    console.log(criticalPercent)
     const criticalDamage = 0.5;
     const criticalDamageBuff = criticalDamage * (criticalPercent / 100) + 1;
+    console.log(criticalDamageBuff)
 
     //damage formula
     const damage = input.characterElementalAttack * criticalDamageBuff;
+    console.log(input.characterElementalAttack)
+
     const totalDamageRounded = damage.toFixed(2);
+    console.log(totalDamageRounded)
 
     if (isNaN(totalDamageRounded)) {
         return;
@@ -63,6 +68,7 @@ function statusHint() {
 }
 
 function submit() {
+
     const totalDamageRounded = calculateDamage();
     const bestType = statusHint();
 
@@ -74,10 +80,6 @@ function submit() {
 
     if (bestType) {
         getByid(character.statusAnalysis).innerText = bestType;
-    }
-
-    if (!totalDamageRounded || !bestType) {
-        alert('Please enter a valid number');
     }
 }
 
