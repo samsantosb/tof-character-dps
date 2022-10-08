@@ -27,7 +27,7 @@ function calculateDamage() {
     const totalDamageRounded = damage.toFixed(2);
 
     if (isNaN(totalDamageRounded)) {
-        return 'Please enter a number in the fields';
+        return;
     }
 
     return totalDamageRounded
@@ -51,14 +51,26 @@ function statusHint() {
     if (input.characterElementalAttack > 20000) {
         return 'Elemental Attack 1.35 times more damage than Critical Rate ';
     }
+
+
 }
 
 function submit() {
     createVariables();
     const totalDamageRounded = calculateDamage();
     const bestType = statusHint();
-    document.getElementById('character_total_damage').innerText = totalDamageRounded;
-    document.getElementById('status_hint').innerText = bestType;
+
+    if (totalDamageRounded) {
+        document.getElementById('character_total_damage').innerText = totalDamageRounded;
+    }
+
+    if (bestType) {
+        document.getElementById('status_hint').innerText = bestType;
+    }
+
+    if (!totalDamageRounded || !bestType) {
+        alert('Please enter a valid number');
+    }
     localStorage.setItem('character_critical', document.getElementById('character_critical').value);
     localStorage.setItem('character_elemental_attack', document.getElementById('character_elemental_attack').value);
 }
