@@ -21,6 +21,10 @@ function calculateDamage() {
     const damage = input.characterElementalAttack * criticalDamageBuff;
     const totalDamageRounded = damage.toFixed(2);
 
+    if (isNaN(totalDamageRounded)) {
+        return 'Please enter a number in the fields';
+    }
+
     return totalDamageRounded
 }
 
