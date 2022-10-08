@@ -45,11 +45,11 @@ function statusHint() {
     }
 
     if (input.characterElementalAttack > 10000 && input.characterElementalAttack <= 15000) {
-        return 'Eelemental Attack gives 1,5 times more damage than Crtical Rate ';
+        return 'Eelemental Attack gives 1.5 times more damage than Crtical Rate ';
     }
 
     if (input.characterElementalAttack > 20000) {
-        return 'Elemental Attack 1,35 times more damage than Critical Rate ';
+        return 'Elemental Attack 1.35 times more damage than Critical Rate ';
     }
 }
 
