@@ -67,6 +67,12 @@ function submit() {
     const totalDamageRounded = calculateDamage();
     const bestType = statusHint();
 
+    if (!totalDamageRounded || !bestType) {
+        alert('Please enter a valid number');
+        return;
+    }
+
+
     if (totalDamageRounded) {
         getByid(character.totalDamage).innerText = totalDamageRounded;
         saveItem(character.critical, getByid(character.critical).value);
