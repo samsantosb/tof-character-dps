@@ -3,6 +3,7 @@ const loadItem = localStorage.getItem.bind(localStorage);
 const saveItem = localStorage.setItem.bind(localStorage);
 
 const character = {
+    criticalDamage: "character_critical_damage",
     critical: "character_critical",
     eAttack: "character_elemental_attack",
     totalDamage: "character_total_damage",
@@ -17,6 +18,15 @@ function load() {
 function createVariables() {
     return {
         characterCritical: Number(getByid(character.critical).value),
+        characterCriticalDamage: function () {
+            const criticalPercent = getByid(character.criticalDamage).value;
+
+            if (criticalPercent.includes('%')) {
+                return Number(criticalPercent.replace('%', '')) / 100;
+            }
+
+            return Number(getByid(character.criticalDamage).value) / 100;
+        }(),
         characterElementalAttack: Number(getByid(character.eAttack).value),
     }
 }
@@ -26,7 +36,7 @@ function calculateDamage() {
 
     //critical formula
     const criticalPercent = input.characterCritical * 0.006276
-    const criticalDamage = 0.5;
+    const criticalDamage = input.characterCriticalDamage;
     const criticalDamageBuff = criticalDamage * (criticalPercent / 100) + 1;
 
     //damage formula
@@ -43,39 +53,20 @@ function calculateDamage() {
 function statusHint() {
     const input = createVariables()
 
-    if (input.characterElementalAttack <= 6000) {
-        return 'Elemental Attack gives you 5 times more damage than Critical Rate';
-    }
 
-    if (input.characterElementalAttack > 6000 && input.characterElementalAttack < 10000) {
-        return 'Eelemental Rate gives you 4 times more damage than Critical Rate';
-    }
 
-    if (input.characterElementalAttack >= 10000 && input.characterElementalAttack < 15000) {
-        return 'Eelemental Attack gives you 3 times more damage than Crtical Rate';
-    }
-
-    if (input.characterElementalAttack >= 15000 && input.characterElementalAttack < 20000) {
-        return 'Eelemental Attack gives you 2 times more damage than Crtical Rate';
-    }
-
-    if (input.characterElementalAttack >= 20000) {
-        return 'Elemental Attack gives you 1.7 times more damage than Critical Rate';
-    }
-
-    return;
+    return input.characterCriticalDamage;
 }
 
 function submit() {
 
     const totalDamageRounded = calculateDamage();
-    const bestType = statusHint();
+    const statusAnalysis = statusHint();
 
-    if (!totalDamageRounded || !bestType) {
+    if (!totalDamageRounded || !statusAnalysis) {
         alert('Please enter a valid number');
         return;
-    } 6
-
+    }
 
     if (totalDamageRounded) {
         getByid(character.totalDamage).innerText = totalDamageRounded;
@@ -83,8 +74,8 @@ function submit() {
         saveItem(character.eAttack, getByid(character.eAttack).value);
     }
 
-    if (bestType) {
-        getByid(character.statusAnalysis).innerText = bestType;
+    if (statusAnalysis) {
+        getByid(character.statusAnalysis).innerText = statusAnalysis;
     }
 }
 
