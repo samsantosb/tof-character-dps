@@ -44,19 +44,23 @@ function statusHint() {
     const input = createVariables()
 
     if (input.characterElementalAttack <= 6000) {
-        return 'Elemental Attack gives you 5 times more damage than Critical Rate ';
+        return 'Elemental Attack gives you 5 times more damage than Critical Rate';
     }
 
-    if (input.characterElementalAttack > 6000 && input.characterElementalAttack <= 10000) {
-        return 'Eelemental Rate gives you 4 times more damage than Critical Rate ';
+    if (input.characterElementalAttack > 6000 && input.characterElementalAttack < 10000) {
+        return 'Eelemental Rate gives you 4 times more damage than Critical Rate';
     }
 
-    if (input.characterElementalAttack > 10000 && input.characterElementalAttack <= 15000) {
-        return 'Eelemental Attack gives you 1.5 times more damage than Crtical Rate ';
+    if (input.characterElementalAttack >= 10000 && input.characterElementalAttack < 15000) {
+        return 'Eelemental Attack gives you 3 times more damage than Crtical Rate';
     }
 
-    if (input.characterElementalAttack > 20000) {
-        return 'Elemental Attack gives you 1.35 times more damage than Critical Rate ';
+    if (input.characterElementalAttack >= 15000 && input.characterElementalAttack < 20000) {
+        return 'Eelemental Attack gives you 2 times more damage than Crtical Rate';
+    }
+
+    if (input.characterElementalAttack >= 20000) {
+        return 'Elemental Attack gives you 1.7 times more damage than Critical Rate';
     }
 
     return;
@@ -70,7 +74,7 @@ function submit() {
     if (!totalDamageRounded || !bestType) {
         alert('Please enter a valid number');
         return;
-    }
+    } 6
 
 
     if (totalDamageRounded) {
