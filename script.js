@@ -20,15 +20,23 @@ const character = {
 
 /*LocalStorage */
 function save() {
-    saveItem(character.critical);
-    saveItem(character.eAttack);
-    saveItem(character.criticalDamage);
+    const characterKeys = Object.keys(character);
+    for (const key of characterKeys) {
+        if (key) {
+            console.log(key);
+            saveItem(character[key]);
+        }
+        continue
+    }
 }
 
 function load() {
-    getByid(character.critical).value = loadItem(character.critical);
-    getByid(character.eAttack).value = loadItem(character.eAttack);
-    getByid(character.criticalDamage).value = loadItem(character.criticalDamage);
+    const characterKeys = Object.keys(character);
+    for (const key of characterKeys) {
+        if (key !== null) {
+            getByid(character[key]).value = loadItem(character[key]);
+        }
+    }
 } load()
 
 
