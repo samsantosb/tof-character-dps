@@ -1,7 +1,9 @@
 /*custom html getters*/
 const getByid = document.getElementById.bind(document);
 const loadItem = localStorage.getItem.bind(localStorage);
-const saveItem = localStorage.setItem.bind(localStorage);
+const saveItem = (itemId) => {
+    localStorage.setItem(itemId, getByid(itemId).value);
+};
 
 
 
@@ -18,9 +20,9 @@ const character = {
 
 /*LocalStorage */
 function save() {
-    saveItem(character.critical, getByid(character.critical).value);
-    saveItem(character.eAttack, getByid(character.eAttack).value);
-    saveItem(character.criticalDamage, getByid(character.criticalDamage).value);
+    saveItem(character.critical);
+    saveItem(character.eAttack);
+    saveItem(character.criticalDamage);
 }
 
 function load() {
@@ -56,12 +58,12 @@ function createVariables() {
 function calculateDamage() {
     const input = createVariables()
 
-
+    //crtical buff calculus
     const criticalPercent = input.characterCritical * 0.006276
     const criticalDamage = input.characterCriticalDamage;
     const criticalDamageBuff = criticalDamage * (criticalPercent / 100) + 1;
 
-
+    //damage calculus
     const damage = input.characterElementalAttack * criticalDamageBuff;
     const totalDamageRounded = damage.toFixed(2);
 
