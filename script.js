@@ -97,7 +97,7 @@ function statusHint() {
 
     const attackToCritPropotion = elementalCoeficient / criticalCoeficient
 
-    return `One unit of you Elemental Attack is equivalent to ${attackToCritPropotion.toFixed(2)} of Critical Damage`
+    return `One unit of you Elemental Attack is equivalent to ${attackToCritPropotion.toFixed(2)} of Critical`
 }
 
 
