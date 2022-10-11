@@ -13,7 +13,7 @@ const character = {
     critical: "character_critical",
     eAttack: "character_elemental_attack",
     totalDamage: "character_total_damage",
-    statusAnalysis: "status_analysis"
+    statusAnalysis: "status_analysis",
 }
 
 
@@ -50,14 +50,12 @@ function isNumber(data) {
 
 
 
-
 /*instance varaibles*/
 function createVariables() {
     return {
         characterCritical: function () {
             return Number(getByid(character.critical).value)
         }(),
-
 
         characterCriticalDamage: function () {
             const criticalPercent = getByid(character.criticalDamage).value;
@@ -74,7 +72,6 @@ function createVariables() {
         }(),
     }
 }
-
 
 
 
@@ -96,19 +93,20 @@ function calculateDamage() {
 
 
 
-
 /*Status Hint based on critical/elemental attack*/
 function statusHint() {
     const input = createVariables()
 
+    //crtical buff calculus
     const criticalPercent = input.characterCritical * 0.006276
     const criticalDamage = input.characterCriticalDamage;
     const criticalDamageBuff = criticalDamage * criticalPercent;
 
-
+    //coefficient calculus
     const criticalCoeficient = criticalDamageBuff / input.characterCritical
     const elementalCoeficient = 100 / input.characterElementalAttack
 
+    //poportion
     const attackToCritPropotion = elementalCoeficient / criticalCoeficient
 
     return `One unit of your Elemental Attack is equivalent to ${attackToCritPropotion.toFixed(2)} of Critical`
