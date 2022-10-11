@@ -23,17 +23,15 @@ function save() {
     const characterKeys = Object.keys(character);
     for (const key of characterKeys) {
         if (key) {
-            console.log(key);
             saveItem(character[key]);
         }
-        continue
     }
 }
 
 function load() {
     const characterKeys = Object.keys(character);
     for (const key of characterKeys) {
-        if (key !== null) {
+        if (key) {
             getByid(character[key]).value = loadItem(character[key]);
         }
     }
@@ -89,9 +87,17 @@ function calculateDamage() {
 function statusHint() {
     const input = createVariables()
 
+    const criticalPercent = input.characterCritical * 0.006276
+    const criticalDamage = input.characterCriticalDamage;
+    const criticalDamageBuff = criticalDamage * criticalPercent;
 
 
-    return input.characterCriticalDamage;
+    const criticalCoeficient = criticalDamageBuff / input.characterCritical
+    const elementalCoeficient = 100 / input.characterElementalAttack
+
+    const attackToCritPropotion = elementalCoeficient / criticalCoeficient
+
+    return `One unit of you Elemental Attack is equivalent to ${attackToCritPropotion.toFixed(2)} of Critical Damage`
 }
 
 
