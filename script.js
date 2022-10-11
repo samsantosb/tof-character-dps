@@ -6,7 +6,6 @@ const saveItem = (itemId) => {
 };
 
 
-
 /*enums*/
 const character = {
     criticalDamage: "character_critical_damage",
@@ -15,7 +14,6 @@ const character = {
     totalDamage: "character_total_damage",
     statusAnalysis: "status_analysis",
 }
-
 
 
 /*LocalStorage */
@@ -30,13 +28,13 @@ function save() {
     }
 }
 
+
 function load() {
     const characterKeys = Object.keys(character);
     for (const key of characterKeys) {
         getByid(character[key]).value = loadItem(character[key]);
     }
 } load()
-
 
 
 /*input-validator*/
@@ -47,7 +45,6 @@ function isNumber(data) {
     }
     return true;
 }
-
 
 
 /*instance varaibles*/
@@ -74,7 +71,6 @@ function createVariables() {
 }
 
 
-
 /*damage formula*/
 function calculateDamage() {
     const input = createVariables()
@@ -90,7 +86,6 @@ function calculateDamage() {
 
     return totalDamageRounded
 }
-
 
 
 /*Status Hint based on critical/elemental attack*/
@@ -113,7 +108,6 @@ function statusHint() {
 }
 
 
-
 /*submit/calculate button*/
 function submit() {
     const totalDamageRounded = calculateDamage();
@@ -127,7 +121,6 @@ function submit() {
         save();
     }
 }
-
 
 
 /*run*/
