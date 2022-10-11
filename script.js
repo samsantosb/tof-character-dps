@@ -21,21 +21,32 @@ const character = {
 /*LocalStorage */
 function save() {
     const characterKeys = Object.keys(character);
+    const nonSaveable = ["statusAnalysis", "totalDamage"];
     for (const key of characterKeys) {
-        if (key) {
-            saveItem(character[key]);
+        if (nonSaveable.includes(key)) {
+            continue;
         }
+        saveItem(character[key]);
     }
 }
 
 function load() {
     const characterKeys = Object.keys(character);
     for (const key of characterKeys) {
-        if (key) {
-            getByid(character[key]).value = loadItem(character[key]);
-        }
+        getByid(character[key]).value = loadItem(character[key]);
     }
 } load()
+
+
+
+/*input-validator*/
+function isNumber(data) {
+    if (isNaN(data)) {
+        alert('Please enter a valid number');
+        return false;
+    }
+    return true;
+}
 
 
 
@@ -43,7 +54,11 @@ function load() {
 /*instance varaibles*/
 function createVariables() {
     return {
-        characterCritical: Number(getByid(character.critical).value),
+        characterCritical: function () {
+            return Number(getByid(character.critical).value)
+        }(),
+
+
         characterCriticalDamage: function () {
             const criticalPercent = getByid(character.criticalDamage).value;
 
@@ -53,7 +68,10 @@ function createVariables() {
 
             return Number(getByid(character.criticalDamage).value) / 100;
         }(),
-        characterElementalAttack: Number(getByid(character.eAttack).value),
+
+        characterElementalAttack: function () {
+            return Number(getByid(character.eAttack).value);
+        }(),
     }
 }
 
@@ -72,10 +90,6 @@ function calculateDamage() {
     //damage calculus
     const damage = input.characterElementalAttack * criticalDamageBuff;
     const totalDamageRounded = damage.toFixed(2);
-
-    if (isNaN(totalDamageRounded)) {
-        return;
-    }
 
     return totalDamageRounded
 }
@@ -97,7 +111,7 @@ function statusHint() {
 
     const attackToCritPropotion = elementalCoeficient / criticalCoeficient
 
-    return `One unit of you Elemental Attack is equivalent to ${attackToCritPropotion.toFixed(2)} of Critical`
+    return `One unit of your Elemental Attack is equivalent to ${attackToCritPropotion.toFixed(2)} of Critical`
 }
 
 
@@ -107,18 +121,10 @@ function submit() {
     const totalDamageRounded = calculateDamage();
     const statusAnalysis = statusHint();
 
-    if (!totalDamageRounded || !statusAnalysis) {
-        alert('Please enter a valid number');
-        return;
-    }
+    if (!isNumber(totalDamageRounded)) return;
 
-    if (totalDamageRounded) {
+    if (totalDamageRounded && statusAnalysis) {
         getByid(character.totalDamage).innerText = totalDamageRounded;
-        save();
-
-    }
-
-    if (statusAnalysis) {
         getByid(character.statusAnalysis).innerText = statusAnalysis;
         save();
     }
